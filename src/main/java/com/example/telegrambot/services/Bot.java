@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("deprecation")
 @EqualsAndHashCode(callSuper = true)
 @Service
 @Slf4j
@@ -63,18 +64,18 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     private void handleStartCommand(Long chatId) {
-        sendResponse(chatId, CommandResponse.START.getResponse());
         log.info(LoggingMessage.RECEIVED_START_COMMAND.getLogMessage(), chatId);
+        sendResponse(chatId, CommandResponse.START.getResponse());
     }
 
     private void handleHelpCommand(Long chatId) {
-        sendResponse(chatId, CommandResponse.HELP.getResponse());
         log.info(LoggingMessage.RECEIVED_HELP_COMMAND.getLogMessage(), chatId);
+        sendResponse(chatId, CommandResponse.HELP.getResponse());
     }
 
     private void handleUnrecognizedCommand(Long chatId) {
-        sendResponse(chatId, CommandResponse.UNRECOGNIZED.getResponse());
         log.info(LoggingMessage.RECEIVED_UNRECOGNIZED_COMMAND.getLogMessage(), chatId);
+        sendResponse(chatId, CommandResponse.UNRECOGNIZED.getResponse());
     }
 
     private void sendResponse(long chatId, String response) {

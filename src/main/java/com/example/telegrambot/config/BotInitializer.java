@@ -3,7 +3,6 @@ package com.example.telegrambot.config;
 import com.example.telegrambot.enums.LoggingMessage;
 import com.example.telegrambot.services.Bot;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -14,9 +13,11 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 @Component
 @Slf4j
 public class BotInitializer {
+    private final Bot bot;
 
-    @Autowired
-    private Bot bot;
+    BotInitializer(Bot bot){
+        this.bot = bot;
+    }
 
     @EventListener({ContextRefreshedEvent.class})
     public void init(){
